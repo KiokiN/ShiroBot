@@ -3,25 +3,25 @@ const client = new Client();
 const fs = require("fs");
 require("dotenv").config();
 
+let commands = new Map();
+
 client.on("ready", () => {
-    console.log(`Logged in as ${client.user.username}.`);
+    console.log(`Logged in as ${client.user.username}.\n` + 
+                "Loading commands...");
+    var l = 0;
+    fs.readdirSync("./commands").filter((cmd) => cmd.includes(".js")).forEach(cmd => {
+        commands.set(`${cmd.slice(0, -3)}`, require(`./commands/${cmd}`));
+        l++;
+    });
+    console.log(`Loaded ${l} commands.`);
 });
 
 client.on("message", msg => {
-    // Check if is a command
     if(!msg.toString().toLowerCase().startsWith(process.env.prefix)) return;
-    
-    // Isolate arguments
     let cmd = msg.toString().slice(process.env.prefix.length).split(/ +/);
-    
-    // Check if command exists
-    if(!fs.existsSync(`./commands/${cmd[0]}.js`)) return;
-
-    // Isolate args
     let args = cmd.slice(1);
-
-    // Run command
-    require(`./commands/${cmd[0]}.js`).run(client, msg, args);
+    if(!commands.has(cmd[0])) return;
+    commands.get(cmd[0]).run(client, msg, args);
 });
 
 client.login(process.env.token);
