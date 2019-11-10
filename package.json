@@ -1,0 +1,28 @@
+{
+  "name": "shirobot",
+  "version": "1.0.0",
+  "description": "When you are too retarded to come up with a name, just steal one from an anime character.",
+  "main": "main.js",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KiokiN/ShiroBot.git"
+  },
+  "keywords": [
+    "bot",
+    "discord"
+  ],
+  "author": "KiokiN",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/KiokiN/ShiroBot/issues"
+  },
+  "homepage": "https://github.com/KiokiN/ShiroBot#readme"
+}

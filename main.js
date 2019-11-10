@@ -8,12 +8,12 @@ let commands = new Map();
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.username}.\n` + 
                 "Loading commands...");
-    var l = 0;
+    var count = 0;
     fs.readdirSync("./commands").filter((cmd) => cmd.includes(".js")).forEach(cmd => {
         commands.set(`${cmd.slice(0, -3)}`, require(`./commands/${cmd}`));
-        l++;
+        count++;
     });
-    console.log(`Loaded ${l} commands.`);
+    console.log(`Loaded ${count} commands.`);
 });
 
 client.on("message", msg => {
